@@ -4,7 +4,7 @@ import { supabase } from "../utils/supabaseClient.js";
         const { data, error } = await supabase.auth.signInWithOAuth({
           provider: "google",
           options: {
-            redirectTo: "http://127.0.0.1:5500/public/ville.html",
+            redirectTo: "https://thanthan77.github.io/city-explorer/ville.html",
           },
         });
 
