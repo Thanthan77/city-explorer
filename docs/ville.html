@@ -3,8 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <title>City Explorer - Ville</title>
-
-    <script type="module" src="src/service/loadUser.js"></script>
       
   </head>
 
@@ -13,6 +11,9 @@
     <p>Connecté en tant que : <strong id="userEmail"></strong></p>
     <input id="villeInput" placeholder="Entrez une ville">
     <button id="searchBtn">Rechercher</button>
+    <button id="logoutBtn">Déconnexion</button>
 
+  <script type="module" src="src/service/loadUser.js"></script>
+  <script type="module" src="src/service/logout.js"></script>
   </body>
 </html>
