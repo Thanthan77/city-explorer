@@ -9,7 +9,16 @@ async function getCityCoords(city) {
   }
 
   const place = data[0];
-  const validTypes = ["city", "town", "village", "municipality"];
+  
+    const validTypes = [
+    "city",
+    "town",
+    "village",
+    "municipality",
+    "administrative",
+    "county",
+    "state_district"
+  ];
 
   if (!validTypes.includes(place.type)) {
     throw new Error("Ce n'est pas une ville");
