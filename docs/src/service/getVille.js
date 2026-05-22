@@ -30,50 +30,17 @@ async function getCityCoords(city) {
   };
 }
 
+
 async function getActivities(lat, lon) {
-  const apiKey = "5ae2e3f221c38a28845f05b62f628f35806807601705e007ba707aa3";
-  const radius = 3000; // 3 km autour du centre
-
-  const url = `https://api.opentripmap.com/0.1/fr/places/radius?radius=${radius}&lon=${lon}&lat=${lat}&rate=2&format=json&apikey=${apiKey}`;
-
+  const url = `https://calm-wood-b16f.ethanqc-chea.workers.dev/?type=list&lat=${lat}&lon=${lon}`;
   const res = await fetch(url);
   return await res.json();
 }
-
-
-
 
 async function getActivityDetails(xid) {
-  const apiKey = "5ae2e3f221c38a28845f05b62f628f35806807601705e007ba707aa3";
-  const url = `https://api.opentripmap.com/0.1/fr/places/xid/${xid}?apikey=${apiKey}`;
-
+  const url = `https://calm-wood-b16f.ethanqc-chea.workers.dev/?type=details&xid=${xid}`;
   const res = await fetch(url);
   return await res.json();
-}
-
-
-
-async function displayActivities(list) {
-  const container = document.getElementById("activities");
-  container.innerHTML = "";
-
-  for (const item of list.slice(0, 10)) { // on limite à 10 activités
-    const details = await getActivityDetails(item.xid);
-
-    const img = details.preview ? details.preview.source : "https://via.placeholder.com/300x150?text=No+Image";
-
-    const card = `
-      <div class="card">
-        <img src="${img}" />
-        <div class="card-content">
-          <h3>${details.name || "Sans nom"}</h3>
-          <p>${details.kinds || ""}</p>
-        </div>
-      </div>
-    `;
-
-    container.innerHTML += card;
-  }
 }
 
 
