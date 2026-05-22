@@ -92,6 +92,7 @@ async function handleSearch() {
     console.log("Coordonnées :", lat, lon);
 
     const activities = await getActivities(lat, lon);
+    console.log("Activities response:", activities);
     await displayActivities(activities);
 
   } catch (err) {
