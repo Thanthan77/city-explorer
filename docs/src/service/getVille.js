@@ -31,7 +31,7 @@ async function getCityCoords(city) {
 }
 
 async function getActivities(lat, lon) {
-  const apiKey = "5ae2e3f221c38a28845f05b62f628f35806807601705e007ba707aa3P";
+  const apiKey = "5ae2e3f221c38a28845f05b62f628f35806807601705e007ba707aa3";
   const radius = 3000; // 3 km autour du centre
 
   const url = `https://api.opentripmap.com/0.1/fr/places/radius?radius=${radius}&lon=${lon}&lat=${lat}&rate=2&format=json&apikey=${apiKey}`;
@@ -44,7 +44,7 @@ async function getActivities(lat, lon) {
 
 
 async function getActivityDetails(xid) {
-  const apiKey = "5ae2e3f221c38a28845f05b62f628f35806807601705e007ba707aa3P";
+  const apiKey = "5ae2e3f221c38a28845f05b62f628f35806807601705e007ba707aa3";
   const url = `https://api.opentripmap.com/0.1/fr/places/xid/${xid}?apikey=${apiKey}`;
 
   const res = await fetch(url);
