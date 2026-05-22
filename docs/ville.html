@@ -3,18 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <title>City Explorer - Ville</title>
-      
+    <link rel="stylesheet" href="styles/ville.css" />
   </head>
 
   <body>
-    <h1>Bienvenue dans City Explorer</h1>
-    <p>Connecté en tant que : <strong id="userEmail"></strong></p>
-    <input id="villeInput" placeholder="Entrez une ville">
-    <button id="searchBtn">Rechercher</button>
-    <button id="logoutBtn">Déconnexion</button>
 
-  <script type="module" src="src/service/loadUser.js"></script>
-  <script type="module" src="src/service/logout.js"></script>
-  <script type="module" src="src/service/getCoordsVille.js"></script>
+    <!-- HEADER -->
+    <header>
+      <h1>City Explorer</h1>
+      <div class="user-info">
+        <span id="userEmail"></span>
+        <button id="logoutBtn" class="btn">Déconnexion</button>
+      </div>
+    </header>
+
+    <!-- BARRE DE RECHERCHE -->
+    <section class="search-section">
+      <input id="villeInput" placeholder="Entrez une ville..." />
+      <button id="searchBtn" class="btn">Rechercher</button>
+    </section>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="grid">
+      <section class="column">
+        <h2>Activités</h2>
+        <div id="activities" class="cards"></div>
+      </section>
+
+      <section class="column">
+        <h2>Lieux</h2>
+        <div id="places" class="cards"></div>
+      </section>
+
+      <section class="column">
+        <h2>Restaurants</h2>
+        <div id="restaurants" class="cards"></div>
+      </section>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script type="module" src="src/service/loadUser.js"></script>
+    <script type="module" src="src/service/logout.js"></script>
+    <script type="module" src="src/service/getCoordsVille.js"></script>
+
   </body>
 </html>
