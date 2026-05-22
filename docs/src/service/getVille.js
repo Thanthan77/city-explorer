@@ -43,6 +43,50 @@ async function getActivityDetails(xid) {
   return await res.json();
 }
 
+async function displayActivities(list) {
+  const container = document.getElementById("activities");
+  container.innerHTML = "";
+
+  // Vérification : OpenTripMap renvoie parfois un objet au lieu d'un tableau
+  if (!Array.isArray(list)) {
+    console.error("Réponse OpenTripMap invalide :", list);
+    container.innerHTML = "<p>Aucune activité trouvée.</p>";
+    return;
+  }
+
+  // Si la liste est vide
+  if (list.length === 0) {
+    container.innerHTML = "<p>Aucune activité trouvée.</p>";
+    return;
+  }
+
+  // On limite à 10 activités
+  const items = list.slice(0, 10);
+
+  for (const item of items) {
+    const details = await getActivityDetails(item.xid);
+
+    const img = details.preview
+      ? details.preview.source
+      : "https://via.placeholder.com/300x150?text=Pas+d'image";
+
+    const name = details.name || "Sans nom";
+    const kinds = details.kinds || "Aucune catégorie";
+
+    const card = `
+      <div class="card">
+        <img src="${img}" />
+        <div class="card-content">
+          <h3>${name}</h3>
+          <p>${kinds}</p>
+        </div>
+      </div>
+    `;
+
+    container.innerHTML += card;
+  }
+}
+
 
 // Quand l’utilisateur clique sur Rechercher
 async function handleSearch() {
