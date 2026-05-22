@@ -47,14 +47,12 @@ async function displayActivities(list) {
   const container = document.getElementById("activities");
   container.innerHTML = "";
 
-  // Vérification : OpenTripMap renvoie parfois un objet au lieu d'un tableau
   if (!Array.isArray(list)) {
     console.error("Réponse OpenTripMap invalide :", list);
     container.innerHTML = "<p>Aucune activité trouvée.</p>";
     return;
   }
 
-  // Si la liste est vide
   if (list.length === 0) {
     container.innerHTML = "<p>Aucune activité trouvée.</p>";
     return;
@@ -66,19 +64,24 @@ async function displayActivities(list) {
   for (const item of items) {
     const details = await getActivityDetails(item.xid);
 
-    const img = details.preview
-      ? details.preview.source
-      : "https://via.placeholder.com/300x150?text=Pas+d'image";
+    const img = details.preview?.source
+      || "https://via.placeholder.com/300x150?text=Pas+d'image";
 
     const name = details.name || "Sans nom";
-    const kinds = details.kinds || "Aucune catégorie";
+
+    const kinds = details.kinds?.replace(/,/g, ", ") || "Aucune catégorie";
+
+    const desc = details.wikipedia_extracts?.text
+      ? details.wikipedia_extracts.text.slice(0, 150) + "..."
+      : "Aucune description disponible.";
 
     const card = `
       <div class="card">
         <img src="${img}" />
         <div class="card-content">
           <h3>${name}</h3>
-          <p>${kinds}</p>
+          <p class="kinds">${kinds}</p>
+          <p class="desc">${desc}</p>
         </div>
       </div>
     `;
